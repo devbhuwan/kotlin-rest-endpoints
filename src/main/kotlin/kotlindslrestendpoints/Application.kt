@@ -1,4 +1,4 @@
-package io.github.devbhuwan.kotlindslrestendpoints
+package kotlindslrestendpoints
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,4 +1,4 @@
-package io.github.devbhuwan.kotlindslrestendpoints
+package kotlindslrestendpoints
 
 import io.restassured.RestAssured
 import io.restassured.http.ContentType.JSON
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-class KotlinDslRestEndpointsApplicationTests {
+class EndpointsIntegrationTests {
 
     val http = RestAssured
             .given()

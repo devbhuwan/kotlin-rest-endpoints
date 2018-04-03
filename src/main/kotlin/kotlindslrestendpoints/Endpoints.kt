@@ -1,4 +1,4 @@
-package io.github.devbhuwan.kotlindslrestendpoints
+package kotlindslrestendpoints
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
