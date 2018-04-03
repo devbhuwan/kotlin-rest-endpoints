@@ -8,12 +8,13 @@ import org.hamcrest.CoreMatchers.hasItems
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = DEFINED_PORT)
 class EndpointsIntegrationTests {
 
     val http = RestAssured
@@ -44,10 +45,10 @@ class EndpointsIntegrationTests {
 
     @Test
     fun getOrdersById() {
-        val orderIdentifiers = this.orderInitializer("PIZZA", "MEAT")
-        getOrderById(orderIdentifiers[0]).statusCode(OK.value())
+        val identifiers = this.orderInitializer("PIZZA", "MEAT")
+        getOrderById(identifiers[0]).statusCode(OK.value())
                 .body("detail", `is`("PIZZA"))
-        getOrderById(orderIdentifiers[1]).statusCode(OK.value())
+        getOrderById(identifiers[1]).statusCode(OK.value())
                 .body("detail", `is`("MEAT"))
     }
 
@@ -64,12 +65,12 @@ class EndpointsIntegrationTests {
 
     @Test
     fun deleteOrderById() {
-        val orderIdentifiers = this.orderInitializer("PIZZA")
+        val identifiers = this.orderInitializer("PIZZA")
         http
-                .delete("/api/orders/${orderIdentifiers[0]}")
+                .delete("/api/orders/${identifiers[0]}")
                 .then().statusCode(OK.value())
 
-        getOrderById(orderIdentifiers[0])
+        getOrderById(identifiers[0])
                 .statusCode(NOT_FOUND.value())
     }
 
